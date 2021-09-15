@@ -20,10 +20,10 @@ for (const link of links) {
 }
 
 /* mudar o header da pagina quando der scroll */
-const header = document.querySelector('#header')
-const navHeight = header.offsetHeight
+function changeHeaderWhenScroll() {
+  const header = document.querySelector('#header')
+  const navHeight = header.offsetHeight
 
-window.addEventListener('scroll', function () {
   if (window.scrollY >= navHeight) {
     // scroll é maior que a altura do header
     header.classList.add('scroll')
@@ -31,7 +31,7 @@ window.addEventListener('scroll', function () {
     // scroll é menor que a altura do header
     header.classList.remove('scroll')
   }
-})
+}
 
 /* Testimonials carousel */
 const swiper = new Swiper('.swiper', {
@@ -61,3 +61,20 @@ scrollReveal.reveal(
   `,
   { interval: 100 }
 )
+
+/* Botão voltar para o topo */
+function backToTop() {
+  const backToTopButton = document.querySelector('.back-to-top')
+
+  if (window.scrollY >= 560) {
+    backToTopButton.classList.add('show')
+  } else {
+    backToTopButton.classList.remove('show')
+  }
+}
+
+/* When scroll */
+window.addEventListener('scroll', function () {
+  changeHeaderWhenScroll()
+  backToTop()
+})
